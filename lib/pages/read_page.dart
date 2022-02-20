@@ -14,9 +14,9 @@ class _ReadPageState extends State<ReadPage> {
 
   @override
   void initState() {
-    super.initState();
     _readerBloc = ReaderBloc();
     _readerBloc.startReading();
+    super.initState();
   }
 
   @override
@@ -28,12 +28,11 @@ class _ReadPageState extends State<ReadPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           bottom: const TabBar(
             tabs: [
-              Tab(text: AppConstants.stream),
               Tab(text: AppConstants.publish),
               Tab(text: AppConstants.behavior),
               Tab(text: AppConstants.replay),
@@ -48,12 +47,6 @@ class _ReadPageState extends State<ReadPage> {
   Widget _buildBody() {
     return TabBarView(
       children: [
-        Scaffold(
-          body: _tabBody(
-            _readerBloc.dartStream,
-            AppConstants.standardDart,
-          ),
-        ),
         Scaffold(
           body: _tabBody(
             _readerBloc.publishStream,

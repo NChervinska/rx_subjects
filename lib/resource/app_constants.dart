@@ -16,11 +16,9 @@ abstract class AppConstants {
     '14. But weep to have that which it fears to lose.',
   ];
   static const start = 'Start';
-  static const stream = 'Stream';
   static const publish = 'Publish';
   static const behavior = 'Behavior';
   static const replay = 'Replay';
-  static const standardDart = 'Standard Dart stream controller';
   static const publishSubject =
       'Exactly like a normal broadcast StreamController with one exception: this class is both a Stream and Sink.';
   static const behaviorSubject =
