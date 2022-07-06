@@ -10,8 +10,9 @@ class ReaderBloc {
 
   Stream<String> get publishStream => _publishStream.stream;
   Stream<String> get behaviorStream => _behaviorStream.stream;
-  Stream<String> get replayStream =>
-      _replayStream.stream.map((l) => _replayStream.values.join("\n"));
+  Stream<String> get replayStream => _replayStream.stream.map(
+        (l) => _replayStream.values.join("\n"),
+      );
 
   startReading() async {
     for (final element in AppConstants.sonnets) {

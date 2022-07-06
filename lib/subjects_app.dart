@@ -10,9 +10,7 @@ class SubjectApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider(
       create: (context) => ReaderBloc(),
-      child: const MaterialApp(
-        home: ReadPage(),
-      ),
+      child: const MaterialApp(home: ReadPage()),
     );
   }
 }

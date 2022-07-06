@@ -39,33 +39,14 @@ class _ReadPageState extends State<ReadPage> {
             ],
           ),
         ),
-        body: _buildBody(),
+        body: TabBarView(
+          children: [
+            _tabBody(_readerBloc.publishStream, AppConstants.publishSubject),
+            _tabBody(_readerBloc.behaviorStream, AppConstants.behaviorSubject),
+            _tabBody(_readerBloc.replayStream, AppConstants.replaySubject),
+          ],
+        ),
       ),
-    );
-  }
-
-  Widget _buildBody() {
-    return TabBarView(
-      children: [
-        Scaffold(
-          body: _tabBody(
-            _readerBloc.publishStream,
-            AppConstants.publishSubject,
-          ),
-        ),
-        Scaffold(
-          body: _tabBody(
-            _readerBloc.behaviorStream,
-            AppConstants.behaviorSubject,
-          ),
-        ),
-        Scaffold(
-          body: _tabBody(
-            _readerBloc.replayStream,
-            AppConstants.replaySubject,
-          ),
-        ),
-      ],
     );
   }
 
@@ -79,16 +60,14 @@ class _ReadPageState extends State<ReadPage> {
           stream: stream,
           builder: (context, snapshot) {
             final data = snapshot.data;
-            if (snapshot.hasData && data != null) {
-              return Text(
-                data,
-                style: const TextStyle(fontSize: 22.0),
-              );
-            } else if (snapshot.hasError) {
-              return Text(snapshot.error.toString());
+            if (snapshot.hasError) Text(snapshot.error.toString());
+            if (data == null) {
+              return const Center(child: CircularProgressIndicator());
             }
-            return const Center(
-              child: CircularProgressIndicator(),
+
+            return Text(
+              data,
+              style: const TextStyle(fontSize: 22.0),
             );
           },
         )
